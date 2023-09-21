@@ -17,7 +17,7 @@ resource "aws_cloudwatch_log_group" "this" {
 }
 
 resource "aws_db_subnet_group" "this" {
-  name       = "main"
+  name       = "${var.deployment_name}-db-subnet-group"
   subnet_ids = var.subnet_ids
 }
 
@@ -34,7 +34,7 @@ resource "aws_db_instance" "this" {
   publicly_accessible          = var.rds_publicly_accessible
   vpc_security_group_ids       = [aws_security_group.rds.id]
   performance_insights_enabled = var.rds_performance_insights_enabled
-  db_subnet_group_name         = aws_db_subnet_group.this
+  db_subnet_group_name         = aws_db_subnet_group.this.name
   
   skip_final_snapshot          = true
   apply_immediately           = true
