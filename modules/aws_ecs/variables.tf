@@ -15,9 +15,14 @@ variable "vpc_id" {
   description = "Select a VPC that allows instances access to the Internet."
 }
 
-variable "subnet_ids" {
+variable "public_subnet_ids" {
   type        = list(string)
-  description = "Select at two subnets in your selected VPC."
+  description = "Select at two public subnets in your selected VPC."
+}
+
+variable "private_subnet_ids" {
+  type        = list(string)
+  description = "Select at two private subnets in your selected VPC."
 }
 
 variable "ssh_key_name" {

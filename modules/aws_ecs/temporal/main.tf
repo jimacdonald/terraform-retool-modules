@@ -12,9 +12,9 @@ module "temporal_aurora_rds" {
 
   monitoring_interval = 60
 
-  # Create DB Subnet group using var.subnet_ids
+  # Create DB Subnet group using var.private_subnet_ids
   create_db_subnet_group = true
-  subnets = var.subnet_ids
+  subnets = var.private_subnet_ids
 
   master_username = aws_secretsmanager_secret_version.temporal_aurora_username.secret_string
   master_password = aws_secretsmanager_secret_version.temporal_aurora_password.secret_string
@@ -86,7 +86,7 @@ resource "aws_ecs_service" "retool_temporal" {
     for_each = var.launch_type == "FARGATE" ? toset([1]) : toset([])
 
     content {    
-      subnets = var.subnet_ids
+      subnets = var.public_subnet_ids
       security_groups = [
         var.container_sg_id
       ]

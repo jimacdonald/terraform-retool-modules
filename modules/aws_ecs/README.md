@@ -12,9 +12,13 @@ module "retool" {
 
     aws_region = "<your-aws-region>"
     vpc_id = "<your-vpc-id>"
-    subnet_ids = [
-        "<your-subnet-1>",
-        "<your-subnet-2>"
+    public_subnet_ids = [
+        "<your-public-subnet-1>",
+        "<your-public-subnet-2>"
+    ]
+    private_subnet_ids = [
+        "<your-private-subnet-1>",
+        "<your-private-subnet-2>"
     ]
     ssh_key_name = "<your-key-pair>"
     ecs_retool_image = "<desired-retool-version>"
