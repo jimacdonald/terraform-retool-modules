@@ -413,7 +413,8 @@ module "temporal" {
   
   deployment_name   = "${var.deployment_name}-temporal"
   vpc_id = var.vpc_id
-  subnet_ids = var.public_subnet_ids
+  public_subnet_ids = var.public_subnet_ids
+  private_subnet_ids = var.private_subnet_ids
   private_dns_namespace_id = aws_service_discovery_private_dns_namespace.retoolsvc[0].id
   aws_cloudwatch_log_group_id = aws_cloudwatch_log_group.this.id
   aws_region = var.aws_region
